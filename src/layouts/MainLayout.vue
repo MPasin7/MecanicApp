@@ -1,9 +1,9 @@
 <template>
   <q-layout class="bg-grey-1">
-    <q-header elevated class="text-white" style="background: #0c6b33" height-hint="61.59">
+    <q-header elevated class="text-white" style="background: #348E91" height-hint="61.59">
       <q-toolbar class="q-py-sm q-px-md">
-        <router-link to="/" class="flex items-center">
-          <img src="/icons/Iconp.png" style="height: 50px" />
+        <router-link to="/" class="flex items-center q-mr-md">
+          <img src="/icons/Iconp.png" style="height: 40px" />
         </router-link>
 
         <q-select
@@ -76,7 +76,7 @@
 
           <q-btn dense flat no-wrap>
             <q-avatar rounded size="30px">
-              <img src="https://cdn.quasar.dev/img/avatar3.jpg">
+              <img src="https://cdn.quasar.dev/img/avatar4.jpg">
             </q-avatar>
             <q-icon name="arrow_drop_down" size="16px" />
 
