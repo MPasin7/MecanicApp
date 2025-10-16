@@ -48,19 +48,13 @@
           </template>
         </q-select>
 
-        <div v-if="$q.screen.gt.sm" class="GL__toolbar-link q-ml-xs q-gutter-md text-body2 text-weight-bold row items-center no-wrap">
-          <a href="javascript:void(0)" class="text-white">
-            Serviços
-          </a>
-          <a href="javascript:void(0)" class="text-white">
-            Agendamento
-          </a>
-          <a href="javascript:void(0)" class="text-white">
-            Marketplace
-          </a>
-          <a href="javascript:void(0)" class="text-white">
-            Como Funciona?
-          </a>
+        <div
+          v-if="$q.screen.gt.sm"
+          class="GL__toolbar-link q-ml-xs q-gutter-md text-subtitle2 text-weight-bolder row items-center no-wrap">
+          <router-link to="/servicos-page" class="text-white">Serviços</router-link>
+          <router-link to="/agendamento-page" class="text-white">Agendamento</router-link>
+          <router-link to="/market-page" class="text-white">Marketplace</router-link>
+          <router-link to="/funciona-page" class="text-white">Como Funciona?</router-link>
         </div>
 
         <q-space />
