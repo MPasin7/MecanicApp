@@ -112,6 +112,50 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <q-footer class="bg-teal-9 text-white q-py-lg q-px-md custom-footer"> <div class="row q-col-gutter-lg"> <div class="col-12 col-md-4">
+      <router-link to="/" class="flex items-center q-mb-md footer-logo-link">
+        <img src="/icons/Iconp.png" style="height: 40px" class="q-mr-sm" />
+        <span class="text-h6 text-white text-bold">MecanicApp</span>
+      </router-link>
+      <p class="text-body2 text-grey-3">
+        Somos apaixonados por carros e dedicados a oferecer um serviço de confiança e qualidade. Conectamos você aos melhores mecânicos da sua região de forma simples, rápida e transparente.
+      </p>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="text-h6 text-white q-mb-md">Links Úteis</div>
+      <ul class="footer-links-list">
+        <li><a href="javascript:void(0)" class="footer-link">Agendar Serviço</a></li>
+        <li><a href="javascript:void(0)" class="footer-link">Nossos Serviços</a></li>
+        <li><a href="javascript:void(0)" class="footer-link">Como Funciona</a></li>
+        <li><a href="javascript:void(0)" class="footer-link">Política de Privacidade</a></li>
+      </ul>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="text-h6 text-white q-mb-md">Contato</div>
+      <div class="flex items-start q-mb-sm">
+        <q-icon name="location_on" class="q-mr-sm q-mt-xs" size="20px" />
+        <span class="text-body2 text-grey-3">Rua Fictícia, 123 - Centro<br>Porto Alegre, RS - CEP 90000-000</span>
+      </div>
+      <div class="flex items-center q-mb-sm">
+        <q-icon name="phone" class="q-mr-sm" size="20px" />
+        <span class="text-body2 text-grey-3">(51) 99999-8888</span>
+      </div>
+      <div class="flex items-center">
+        <q-icon name="email" class="q-mr-sm" size="20px" />
+        <span class="text-body2 text-grey-3">contato@mecanicapp.com</span>
+      </div>
+    </div>
+  </div>
+
+  <q-separator dark class="q-my-md" /> <div class="row items-center justify-center justify-md-between">
+    <div class="text-caption text-grey-4">
+      &copy; {{ new Date().getFullYear() }} MecanicApp.
+    </div>
+  </div>
+</q-footer>
   </q-layout>
 </template>
 
@@ -120,26 +164,28 @@ import { ref } from 'vue'
 import { fabGithub } from '@quasar/extras/fontawesome-v6'
 
 const stringOptions = [
-  'quasarframework/quasar',
-  'quasarframework/quasar-awesome'
+  'Troca de óleo',
+  'Revisão completa',
+  'Alinhamento e balanceamento',
+  'Freios',
+  'Bateria'
 ]
 
 export default {
-  name: 'MyLayout',
+  name: 'MainLayout', 
 
   setup () {
     const text = ref('')
     const options = ref(null)
     const filteredOptions = ref([])
-    const search = ref(null) // $refs.search
+    const search = ref(null)
 
     function filter (val, update) {
       if (options.value === null) {
-        // load data
         setTimeout(() => {
           options.value = stringOptions
           search.value.filter('')
-        }, 2000)
+        }, 1000)
         update()
         return
       }
@@ -155,11 +201,7 @@ export default {
         filteredOptions.value = [
           {
             label: val,
-            type: 'In this repository'
-          },
-          {
-            label: val,
-            type: 'All GitHub'
+            type: 'Pesquisar por'
           },
           ...options.value
             .filter(op => op.toLowerCase().includes(val.toLowerCase()))
@@ -170,12 +212,10 @@ export default {
 
     return {
       fabGithub,
-
       text,
       options,
       filteredOptions,
       search,
-
       filter
     }
   }
@@ -183,6 +223,7 @@ export default {
 </script>
 
 <style lang="sass">
+// Estilos do seu Header (mantidos)
 .GL
   &__select-GL__menu-link
     .default-type
@@ -222,4 +263,40 @@ export default {
     width: 450px !important
     .q-field__append
       display: none
+
+// Estilos do Footer (atualizados)
+.custom-footer
+  background-color: #26A69A !important // Cor teal-7 ou um pouco mais escuro se preferir
+
+.custom-footer .text-h6
+  color: white !important // Garante que os títulos sejam brancos
+
+.custom-footer .text-body2
+  color: #CFD8DC !important // Garante que o texto seja cinza claro
+
+.footer-logo-link
+  color: white !important // Garante que o link da logo seja branco
+
+.footer-links-list
+  list-style-type: none
+  padding-left: 0
+  margin: 0
+
+  li
+    margin-bottom: 8px
+
+.footer-link
+  color: #CFD8DC // Text grey 200
+  text-decoration: none
+  transition: color 0.3s ease
+
+  &:hover
+    color: var(--q-color-primary) // Usa a cor primária do seu tema no hover
+    text-decoration: underline
+
+.footer-social-icon
+  color: #CFD8DC // Text grey 200
+  &:hover
+    color: var(--q-color-primary) // Mudar para a cor primária no hover
+    background: transparent !important // Garantir que o fundo não mude
 </style>
