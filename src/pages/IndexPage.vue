@@ -1,6 +1,5 @@
 <template>
   <q-page class="q-pa-none">
-
     <div class="hero-section flex flex-center">
       <div class="hero-overlay"></div>
       <div class="hero-content text-center text-white">
@@ -76,7 +75,7 @@
     </div>
 
     <div class="q-pa-xl">
-       <div class="text-center">
+      <div class="text-center">
         <h2 class="text-h4 text-bold text-dark q-mb-sm">Como Funciona?</h2>
         <p class="text-subtitle1 text-grey-8 q-mb-xl">Simples, rápido e transparente.</p>
       </div>
@@ -99,23 +98,30 @@
       </div>
     </div>
 
-
     <div class="q-pa-xl bg-dark text-white">
-       <div class="text-center">
+      <div class="text-center">
         <h2 class="text-h4 text-bold q-mb-sm">Profissionais de Confiança</h2>
-        <p class="text-subtitle1 text-grey-4 q-mb-xl">Conheça um de nossos mecânicos parceiros mais bem avaliados.</p>
+        <p class="text-subtitle1 text-grey-4 q-mb-xl">
+          Conheça alguns de nossos mecânicos parceiros mais bem avaliados.
+        </p>
       </div>
-      <div class="flex flex-center">
-        <q-card class="q-pa-lg text-center mechanic-card bg-secondary text-white" flat>
+
+      <div class="row justify-center q-gutter-md">
+        <q-card
+          v-for="mecanico in mecanicos"
+          :key="mecanico.nome"
+          class="q-pa-lg text-center mechanic-card bg-secondary text-white"
+          flat
+        >
           <q-avatar size="120px" class="q-mb-md shadow-4">
-            <img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" />
+            <img :src="mecanico.foto" />
           </q-avatar>
-          <div class="text-h5 q-mt-sm">João Silva</div>
+          <div class="text-h5 q-mt-sm">{{ mecanico.nome }}</div>
           <div class="text-caption text-grey-5 q-mb-sm">
-            Mecânico parceiro desde 2024
+            Mecânico parceiro desde {{ mecanico.desde }}
           </div>
-          <q-rating v-model="rating" max="5" color="amber" readonly size="24px" />
-          <div class="text-bold q-mt-xs">{{ rating.toFixed(1) }} de 5 estrelas</div>
+          <q-rating v-model="mecanico.rating" max="5" color="amber" readonly size="28px" />
+          <div class="text-bold q-mt-xs">{{ mecanico.rating.toFixed(1) }} de 5 estrelas</div>
         </q-card>
       </div>
     </div>
@@ -127,7 +133,6 @@
 import { ref } from "vue";
 
 const busca = ref("");
-const rating = ref(4.9);
 
 const categorias = [
   { label: "Revisão Completa", icon: "build" },
@@ -139,13 +144,33 @@ const categorias = [
 ];
 
 const populares = ["Troca de óleo", "Revisão", "Bateria", "Freios", "Pneus"];
+
+const mecanicos = ref([
+  {
+    nome: "João Silva",
+    desde: 2024,
+    rating: 4.9,
+    foto: "https://cdn-icons-png.flaticon.com/512/1995/1995574.png",
+  },
+  {
+    nome: "Carlos Mendes",
+    desde: 2022,
+    rating: 4.8,
+    foto: "https://cdn-icons-png.flaticon.com/512/1995/1995573.png",
+  },
+  {
+    nome: "Ana Souza",
+    desde: 2023,
+    rating: 5.0,
+    foto: "https://cdn-icons-png.flaticon.com/512/1995/1995572.png",
+  },
+]);
 </script>
 
 <style scoped>
-/* HERO */
 .hero-section {
   position: relative;
-  height: 90vh; /* Aumenta a altura para maior impacto */
+  height: 90vh;
   min-height: 600px;
   background-image: url("https://images.unsplash.com/photo-1503376780353-7e6692767b70");
   background-size: cover;
@@ -158,44 +183,35 @@ const populares = ["Troca de óleo", "Revisão", "Bateria", "Freios", "Pneus"];
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(10, 12, 13, 0.85); /* Mais escuro para melhor contraste */
+  background: rgba(10, 12, 13, 0.85);
   z-index: 1;
 }
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 900px; /* Limita a largura do texto em telas grandes */
+  max-width: 900px;
   padding: 0 24px;
 }
-
-/* <<< CORREÇÃO AQUI >>> */
 .search-input :deep(.q-field__control) {
   border-radius: 50px;
 }
-
-
-/* Categorias */
 .category-card {
   border-radius: 16px;
   border: 1px solid #e0e0e0;
   background: white;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 100%; /* Garante que todos os cards tenham a mesma altura */
+  height: 100%;
 }
 .category-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
-
-/* Profissional */
 .mechanic-card {
   border-radius: 16px;
   max-width: 350px;
   width: 100%;
   border: 1px solid var(--q-color-primary);
 }
-
-/* Títulos das Seções */
 .text-h4 {
   font-weight: 700;
 }

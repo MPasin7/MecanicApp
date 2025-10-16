@@ -61,12 +61,6 @@
           <a href="javascript:void(0)" class="text-white">
             Como Funciona?
           </a>
-          <a href="javascript:void(0)" class="text-white">
-            Sobre Nós
-          </a>
-          <a href="javascript:void(0)" class="text-white">
-            Contato
-          </a>
         </div>
 
         <q-space />
